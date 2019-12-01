@@ -1,16 +1,19 @@
 'use strict';
 
+// For consistency with Responses, Conditions
+// are also functions.
+
 let Conditions = {
-  targetIsYou: (data, matches) => {
+  targetIsYou: () => (data, matches) => {
     return data.me == matches.target;
   },
-  caresAboutAOE: (data) => {
+  caresAboutAOE: () => (data) => {
     return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
   },
-  caresAboutBuster: (data) => {
-    return data.role == 'tank' || data.role == 'healer';
+  caresAboutMagical: () => (data) => {
+    return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
   },
-  caresAboutPhysicalBuster: (data) => {
+  caresAboutPhysical: () => (data) => {
     return data.role == 'tank' || data.role == 'healer' || data.CanFeint();
   },
 };
